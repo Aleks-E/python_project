@@ -23,9 +23,4 @@ urlpatterns = [
     path('db_create/', views.db_create, name='db_create'),
     path('db_clear/', views.db_clear, name='db_clear'),
     path('out/', views.out, name='out'),
-
-    # path('<int:a>/index_1/', views.index_1, name='index_1'),
-    # path('<int:b>/index_1/', views.index_1, name='index_1'),
-    # path('<int:article_id>/', views.detail, name='detail'),
-    # path('<int:article_id>/leave_comment/', views.leave_comment, name='leave_comment'),
 ]
