@@ -1,0 +1,98 @@
+{% block title %}Weather statistics{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'db_create' %}" method="POST">
+        {% csrf_token %}
+
+        <button type="submit">dbCreate</button><br>
+    </form>
+
+
+    <form action="{% url 'db_clear' %}" method="POST">
+        {% csrf_token %}
+
+        <button type="submit">dbClear</button><br>
+    </form>
+
+<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
+
+
+
+<form action="{% url 'out' %}" method="GET">
+    {% csrf_token %}
+
+    Start of period
+    <br>
+    <input type="text" required placeholder="Year" name="year_start">
+    <input type="text" required placeholder="Month" name="month_start">
+    <input type="text" required placeholder="Day" name="day_start">
+    <br>
+    <br>
+    End of period
+    <br>
+    <input type="text" required placeholder="Year" name="year_end">
+    <input type="text" required placeholder="Month" name="month_end">
+    <input type="text" required placeholder="Day" name="day_end">
+    <br>
+    <br>
+    City
+    <br>
+    <select name="CitySelect" id="CitySelect" required>
+        <option value=""></option>
+        <option value="Anapa">Anapa</option>
+        <option value="Astrakhan">Astrakhan</option>
+        <option value="Bangkok">Bangkok</option>
+        <option value="Beijing">Beijing</option>
+        <option value="Irkutsk">Irkutsk</option>
+        <option value="London">London</option>
+        <option value="Moscow">Moscow</option>
+        <option value="Novosibirsk">Novosibirsk</option>
+        <option value="Paris">Paris</option>
+        <option value="Saint Petersburg">Saint Petersburg</option>
+        <option value="Sochi">Sochi</option>
+        <option value="Vladivostok">Vladivostok</option>
+        <option value="Washington">Washington</option>
+        <option value="Yakutsk">Yakutsk</option>
+        <option value="Yekaterinburg">Yekaterinburg</option>
+    </select>
+    <br>
+    <br>
+
+    <button type="submit">Get Statistic</button>
+</form>
+
+<br>
+temperature_average:
+{{temperature_average}}
+<br>
+temperature_min_abs:
+{{temperature_min_abs}}
+<br>
+temperature_max_abs:
+{{temperature_max_abs}}
+<br>
+<br>
+{% for item in temperature_year_statistics_list %}
+    {{item.0}}
+    <br>
+    temperature_min_avg:
+    {{item.1}}
+    <br>
+    temperature_max_avg:
+    {{item.2}}
+    <br>
+{% endfor %}
+{% endblock %}
+<br>
+precipitation_ratio:
+{{precipitation_ratio}}
+<br>
+<br>
+two of the most frequent types of precipitation:
+<br>
+{{precipitation_list.0.0}}
+<br>
+{{precipitation_list.1.0}}
